@@ -5,7 +5,11 @@ date: "8/20/2021"
 output: html_document
 ---
 
+<<<<<<< HEAD
 ```{r setup, echo = FALSE, include=F}
+=======
+```{r setup, echo = FALSE, include=FALSE}
+>>>>>>> 9d1a953b66d4a294e610090afa5ff45812413d8b
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
