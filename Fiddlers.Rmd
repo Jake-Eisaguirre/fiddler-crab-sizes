@@ -22,13 +22,16 @@ fids <- read_csv(here("data", "HTL-MAR-FiddlerCrabBodySize.csv"))
 ```
 
 
+## Data Exploration
+Here we have a nice figure in which we can do some initial data exploration regarding carapace width by lattitude. 
 ```{r echo= FALSE}
 ggplot(fids, aes(x = Latitude, y = carapace_width)) + 
   geom_point(aes(color = Latitude)) +
   labs(title = "Carapace Width by Latitude",
        x = "Latitude", 
        y = "Carapace Width (mm)", 
-       caption = "Figure A is the observed Caprapace widths at latitude degrees")
+       caption = "Figure A is the observed Caprapace widths at latitude degrees") +
+  theme_classic()
   
 ```
 
@@ -40,7 +43,8 @@ ggplot(fids, aes(x = Latitude, y = carapace_width)) +
 
 
 
-
+## Data Table
+Here is a data table with some basic info about our fiddler crabs at different sites
 ```{r echo=F}
 
 data <- fids %>%
@@ -58,6 +62,9 @@ kable(data, col.name = c("Site", "Mean Carapace Width (mm)", "SD Carapace Width 
 
 ```
 
+
+## Temperate vs Carapace Width
+Here we can see the possilbe correlation between mean carapce width and temperature
 ```{r, echo = FALSE, fig.alt = "Scatterplot of mean annual temperature compared to mean carapace width. Increases in temeperature result in decreases in mean width size."}
 mean_data = fids %>% 
   clean_names() %>%
@@ -69,8 +76,8 @@ ggplot(mean_data, aes(x = matw, y = mean_carapace_width)) +
   labs(title = "Mean Carapace Width by Temp", 
        x = "Mean Annual Water Temperature", 
        y = "Mean Carapace Width", 
-       caption = "Figure B shows a negative trend in mean carapace width with increase in water temperature.")
-
+       caption = "Figure B shows a negative trend in mean carapace width with increase in water temperature.") +
+  theme_classic()
 
 ```
 
