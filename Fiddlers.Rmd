@@ -11,6 +11,7 @@ library(tidyverse)
 library(here)
 library(janitor)
 library(lubridate)
+library(kableExtra)
 ```
 
 
@@ -19,6 +20,8 @@ library(lubridate)
 fids <- read_csv(here("data", "HTL-MAR-FiddlerCrabBodySize.csv"))
 
 ```
+
+
 ```{r echo= FALSE}
 ggplot(fids, aes(x = Latitude, y = carapace_width)) + 
   geom_point(aes(color = Latitude)) +
@@ -27,5 +30,31 @@ ggplot(fids, aes(x = Latitude, y = carapace_width)) +
        y = "Carapace Width (mm)", 
        caption = "Figure A is the observed Caprapace widths at latitude degrees")
   
+```
+
+
+
+
+
+
+
+
+
+
+```{r echo=F}
+
+data <- fids %>%
+  
+  clean_names() %>% 
+  
+  group_by(site) %>% 
+  
+  summarize(mean_carapace_width = round(mean(carapace_width), 2), sd_carapace_width = round(sd(carapace_width), 2), sample_size = n())
+  
+
+kable(data, col.name = c("Site", "Mean Carapace Width (mm)", "SD Carapace Width (mm)", "Sample Size")) %>% 
+  kable_classic()
+  
+
 ```
 
