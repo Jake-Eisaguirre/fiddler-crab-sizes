@@ -19,4 +19,13 @@ library(lubridate)
 fids <- read_csv(here("data", "HTL-MAR-FiddlerCrabBodySize.csv"))
 
 ```
+```{r echo= FALSE}
+ggplot(fids, aes(x = Latitude, y = carapace_width)) + 
+  geom_point(aes(color = Latitude)) +
+  labs(title = "Carapace Width by Latitude",
+       x = "Latitude", 
+       y = "Carapace Width (mm)", 
+       caption = "Figure A is the observed Caprapace widths at latitude degrees")
+  
+```
 
