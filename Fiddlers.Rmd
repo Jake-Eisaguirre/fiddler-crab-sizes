@@ -58,3 +58,19 @@ kable(data, col.name = c("Site", "Mean Carapace Width (mm)", "SD Carapace Width 
 
 ```
 
+```{r, echo = FALSE, fig.alt = "Scatterplot of mean annual temperature compared to mean carapace width. Increases in temeperature result in decreases in mean width size."}
+mean_data = fids %>% 
+  clean_names() %>%
+  group_by(matw) %>% 
+  summarize(mean_carapace_width = mean(carapace_width))
+  
+ggplot(mean_data, aes(x = matw, y = mean_carapace_width)) + 
+  geom_point() + 
+  labs(title = "Mean Carapace Width by Temp", 
+       x = "Mean Annual Water Temperature", 
+       y = "Mean Carapace Width", 
+       caption = "Figure B shows a negative trend in mean carapace width with increase in water temperature.")
+
+
+```
+
